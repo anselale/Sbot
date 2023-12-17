@@ -13,6 +13,9 @@ def summarize():
     print("Request Method: ", request.method)
     print("Request Headers: ", request.headers)
 
+    # Debugging: Print raw data of the request
+    print("Raw data:", request.data)
+
     # Get JSON data from request
     data = request.get_json()
     if data is None:
