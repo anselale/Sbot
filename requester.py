@@ -8,9 +8,9 @@ class Requester:
     def request_shit(self, text):
         with requests.Session() as session:
             url = f"http://{self._server}:5000/summarize"
-            json = {"text": text}
+            data = {"text": text}
 
-            result = session.post(url=url, json=json).json()
+            result = session.post(url=url, data=data).json()
 
             return result["result"]
 
@@ -93,6 +93,6 @@ After the release of Overwatch, Blizzard's developers continued to add to the ga
 try:
     response = test.request_shit(text=summary_text)
 except Exception as e:
-    response = e
+    response = str(e)
 
 print(response)

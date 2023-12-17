@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from agentforge.agents.SummarizationAgent import SummarizationAgent
-import json
 
 app = Flask(__name__)
 
@@ -9,34 +8,20 @@ summ_agent = SummarizationAgent()
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
-    # Debugging: Print the request method and headers
-    print("Request Method: ", request.method)
-    print("Request Headers: ", request.headers)
+    # Retrieve data from form
+    text = request.form.get('text')
 
-    # Debugging: Print raw data of the request
-    print("Raw data:", request.data)
+    # Optional: Debugging to print the received data
+    print("Received text:", text)
 
-    # Get JSON data from request
-    data = request.get_json()
-    if data is None:
-        print("No JSON received. Request data: ", request.data)
-        return jsonify({"error": "No JSON data found"}), 400
-
-    # Debugging: Print the received JSON data
-    print("JSON received: ", json.dumps(data, indent=4))
-
-    # Process the text
-    text = data.get('text')
+    # Check if the text is provided
     if not text:
-        print("No 'text' found in JSON data")
-        return jsonify({"error": "No 'text' key in JSON data"}), 400
+        return jsonify({"error": "No text provided"}), 400
 
-    # Perform summarization
-    result = summ_agent.summarize(text=text)  # Replace with appropriate method call
+    # Process the text (and context if needed)
+    result = summ_agent.summarize(text=text)  # Adjust as per your requirement
 
-    # Debugging: Print the result
-    print("Summarization result: ", result)
-
+    # Return the result
     return jsonify(result=result)
 
 
