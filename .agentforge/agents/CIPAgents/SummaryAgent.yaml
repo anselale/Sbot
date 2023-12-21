@@ -17,3 +17,6 @@ Prompts:
     ```
     {text}
     ```
+
+  Response: |+
+    You must provide a salient response that is straight forward and easy to understand.
