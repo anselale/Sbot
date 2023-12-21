@@ -12,7 +12,7 @@ def summarize():
     text = request.form.get('text')
 
     # Optional: Debugging to print the received data
-    print("Received text:", text)
+    print("\n\nReceived text:\n\n", text)
 
     # Check if the text is provided
     if not text:
@@ -20,6 +20,8 @@ def summarize():
 
     # Process the text (and context if needed)
     result = summ_agent.summarize(text=text)  # Adjust as per your requirement
+
+    print(f"\n\nModel Response:\n\n{result}")
 
     # Return the result
     return jsonify(result=result)
