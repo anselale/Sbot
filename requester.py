@@ -7,7 +7,7 @@ class Requester:
 
     def request_shit(self, text):
         with requests.Session() as session:
-            url = f"http://{self._server}:5000/summarize"
+            url = f"http://{self._server}:5000/summary"
             data = {"text": text}
 
             result = session.post(url=url, data=data).json()
