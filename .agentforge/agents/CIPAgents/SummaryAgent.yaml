@@ -18,5 +18,12 @@ Prompts:
     {text}
     ```
 
+  Feedback: |+
+    Please consider the following feedback from the user:
+    
+    ```
+    {feedback}
+    ```
+
   Response: |+
     You must provide a salient response that is straight forward and easy to understand.

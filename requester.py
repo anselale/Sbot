@@ -5,10 +5,10 @@ class Requester:
 
     _server = "127.0.0.1"
 
-    def request_shit(self, text):
+    def request_shit(self, text, feedback):
         with requests.Session() as session:
             url = f"http://{self._server}:5000/summary"
-            data = {"text": text}
+            data = {"text": text, "feedback": feedback}
 
             result = session.post(url=url, data=data).json()
 
@@ -90,8 +90,10 @@ Jeff Kaplan, Michael Chu, and Scott Mercer served as the game's lead director, l
 
 After the release of Overwatch, Blizzard's developers continued to add to the game through free updates, introducing new characters, maps, game modes, and cosmetic items, often as part of seasonal events.[16][17] The different gameplays of individual heroes were also tuned and patched in response to player feedback and statistics regarding the meta found within the game.[18][19] As Kaplan followed a philosophy that emphasized players' perception of game balance, he affirmed that meta shifts to Overwatch were beholden to its players and not its developers; Heroes Never Die wrote on Kaplan's belief that if the community thought Overwatch's meta was broken, then it actually was and vice versa.[20]'''
 
+feed = "Please provide the summary in the tone of jar-jar binks"
+
 try:
-    response = test.request_shit(text=summary_text)
+    response = test.request_shit(text=summary_text,feedback=feed)
 except Exception as e:
     response = str(e)
 

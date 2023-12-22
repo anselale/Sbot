@@ -35,14 +35,20 @@ def summary():
     text = request.form.get('text')
 
     # Optional: Debugging to print the received data
-    print("\n\nReceived text:\n\n", text)
+    # print("\n\nReceived text:\n\n", text)
 
     # Check if the text is provided
     if not text:
         return jsonify({"error": "No text provided"}), 400
 
+    feedback = request.form.get('feedback')
+
+    # Check if the text is provided
+    if not feedback:
+        feedback = ""
+
     # Process the text (and context if needed)
-    result = cip_summ_agent.run(text=text)  # Adjust as per your requirement
+    result = cip_summ_agent.run(text=text, feedback=feedback)  # Adjust as per your requirement
 
     print(f"\n\nModel Response:\n\n{result}")
 
