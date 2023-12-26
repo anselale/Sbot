@@ -65,7 +65,7 @@ def draft():
     return jsonify(result=result)
 
 
-@app.route('/draft', methods=['POST'])
+@app.route('/cip', methods=['POST'])
 def cip():
     # Retrieve data from form
     ticket = request.form.get('ticket_content')
@@ -77,7 +77,7 @@ def cip():
     if not ticket:
         return jsonify({"error": "No ticket content provided"}), 400
 
-    instructions = request.form.get('instructions')
+    instructions = request.form.get('task_instructions')
 
     # Check if the text is provided
     if not instructions:
